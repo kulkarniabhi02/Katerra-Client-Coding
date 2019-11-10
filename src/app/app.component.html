@@ -1,0 +1,26 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="nav navbar-nav">
+      <button (click)="uploadCsvFile()" id="uploadDialogBtn">
+        Upload
+        <input id="uploadFile" type="file" style="visibility:hidden" (change)="fileChangeEvent($event)" accept=".csv" />
+      </button>
+      <button *ngIf="showDisplay" (click)="displayExcelDetails()">Display</button>
+      <button *ngIf="showClearDisplay" (click)="clearExcelDetails()">Clear Display</button>
+    </div>
+  </div>
+</nav>
+<section>
+  <table class="table">
+    <thead>
+      <tr>
+        <th *ngFor="let excelResponseItemKeys of excelResponse[0] | keyvalue">{{excelResponseItemKeys.key}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let excelResponseItem of excelResponse">
+        <td *ngFor="let excelResponseItemValues of excelResponseItem | keyvalue">{{excelResponseItemValues.value}}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
